@@ -5,6 +5,7 @@ const UserSchema = mongoose.Schema({
   orcid: String,
   accessToken: String,
   tokens: [String],
+  date_joined: Date
 });
 
 let User;
