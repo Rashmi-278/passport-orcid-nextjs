@@ -2,9 +2,9 @@
   "name": "passport-next",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 5000",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -p 5000",
     "lint": "next lint"
   },
   "dependencies": {
@@ -15,8 +15,8 @@
     "mongoose": "^6.2.1",
     "next": "12.0.10",
     "passport": "^0.5.2",
-    "passport-google-oauth2": "^0.2.0",
     "react": "17.0.2",
+    "passport-orcid": "^0.0.4",
     "react-dom": "17.0.2"
   },
   "devDependencies": {

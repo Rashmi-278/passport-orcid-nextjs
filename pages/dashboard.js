@@ -6,7 +6,7 @@ import jwt from "jsonwebtoken";
 import User from "../models/User";
 import { useRouter } from "next/router";
 
-function Dashboard({ name, email }) {
+function Dashboard({ username, orcid }) {
   const router = useRouter();
 
   const logout = () => {
@@ -19,8 +19,8 @@ function Dashboard({ name, email }) {
       <Head>
         <title>Dashboard</title>
       </Head>
-      <div>Welcome {name}!</div>
-      <div>{email}</div>
+      <div>Welcome {username}!</div>
+      <div>{orcid}</div>
       <button onClick={logout}>Logout</button>
     </div>
   );
@@ -32,11 +32,8 @@ export async function getServerSideProps({ req, res }) {
     await connect();
     // check cookie
     const token = getCookie("token", { req, res });
-    if (!token)
-      return {
-        redirect: {
-          destination: "/",
-        },
+    if (!token){
+      console.error("token missing, login again")
       };
 
     const verified = await jwt.verify(token, process.env.JWT_SECRET);
@@ -49,8 +46,8 @@ export async function getServerSideProps({ req, res }) {
       };
     return {
       props: {
-        email: obj.email,
-        name: obj.name,
+        orcid: obj.orcid,
+        username: obj.username,
       },
     };
   } catch (err) {

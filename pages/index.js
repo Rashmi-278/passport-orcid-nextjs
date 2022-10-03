@@ -2,6 +2,8 @@ import { checkCookies, getCookie, getCookies } from "cookies-next";
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
+import Link from 'next/link'
+
 
 export default function Home() {
   return (
@@ -12,7 +14,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <a href="/api/google">Login with Google</a>
+      <Link href="/api/orcid">Login with ORCID</Link>
     </div>
   );
 }
@@ -20,7 +22,7 @@ export default function Home() {
 export async function getServerSideProps({ req, res }) {
   try {
     const cookieExists = getCookie("token", { req, res });
-    console.log(cookieExists);
+    console.log("cookie Exists:" + cookieExists);
     if (cookieExists) return { redirect: { destination: "/dashboard" } };
     return { props: {} };
   } catch (err) {
