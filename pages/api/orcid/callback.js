@@ -16,6 +16,6 @@ export default async function (req, res, next) {
       req,
       res,
     });
-    res.redirect("http://localhost:5000/dashboard");
+    res.redirect("/dashboard");
   })(req, res, next);
 }
